@@ -8,10 +8,15 @@ import Home from "./components/home.jsx"
 import Sidebar from "./components/sidebar.jsx"
 import Component from "./components/component.jsx"
 
+import AppActions from "./actions/AppActions";
 import ServiceActions from "./actions/ServiceActions";
 
 
 require('../index.scss');
+
+AppActions.addSidebarEntry( {name:'Home', link: '#/home'})
+AppActions.addSidebarEntry( {name:'Pane 1', link: '#/component/pane1'})
+AppActions.addSidebarEntry( {name:'Pane 2', link: '#/component/pane2'})
 
 class App extends React.Component {
   render() {

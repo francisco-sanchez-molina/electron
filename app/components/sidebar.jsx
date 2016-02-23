@@ -1,19 +1,44 @@
 import React from "react"
 import { Pane, NavGroup, NavTitle, NavGroupItem } from "react-photonkit"
 
+import AppStore from "../stores/AppStore";
+
 class Sidebar extends React.Component {
+  constructor(props) {
+      super(props);
+      this.state = AppStore.getState();
+      this._onChange = this._onChange.bind(this);
+  }
+
+  componentDidMount() {
+      AppStore.listen(this._onChange);
+  }
+
+  componentWillUnmount() {
+      AppStore.unlisten(this._onChange);
+  }
+
+  _onChange() {
+      this.setState(AppStore.getState());
+  }
 
   render() {
-    return (
-      <Pane ptSize="sm" sidebar>
-        <NavGroup activeKey='1' onSelect={this.onSelect}>
-          <NavTitle>Sidebar!</NavTitle>
-          <NavGroupItem href="#/home" eventKey={1} glyph="home" text="Home" />
-          <NavGroupItem href="#/component/pane1" eventKey={2} glyph="download" text="Pane 1" />
-          <NavGroupItem href="#/component/pane2" eventKey={3} glyph="download" text="Pane 2" />
-        </NavGroup>
-      </Pane>
-    );
+    var counter = 1;
+    var navGroup = <NavGroup activeKey='1' onSelect={this.onSelect}>
+        <NavTitle>Sidebar!</NavTitle>
+        <NavGroupItem />
+      </NavGroup>;
+      navGroup.props.children.pop();
+    this.state.app.sidebar.forEach((sidebarEntry) => {
+        var child = <NavGroupItem href={sidebarEntry.link} key={counter} eventKey={counter} glyph="download" text={sidebarEntry.name} />;
+        navGroup.props.children.push(child);
+        counter ++;
+        });
+      return (
+        <Pane ptSize="sm" sidebar>
+          { navGroup}
+        </Pane>
+      );
   }
 
 }
