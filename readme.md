@@ -9,6 +9,7 @@ Electron aPPlication
 - electron
 - react
 - react-router
+- alt
 - webpack
 
 ![screenshot]
@@ -29,9 +30,10 @@ $ npm start
 ### Build
 
 ```sh
-$ npm run build      # all
-$ npm run build-osx  # osx(64)
-$ npm run build-win  # win(32, 64)
+$ npm run build        # all
+$ npm run build-linux  # linux
+$ npm run build-osx    # osx(64)
+$ npm run build-win    # win(32, 64)
 ```
 
 
@@ -39,6 +41,6 @@ $ npm run build-win  # win(32, 64)
 
 MIT © react-photonkit
 
-
+Forked from https://github.com/react-photonkit/epp
 
 [screenshot]: assets/screenshot.png
