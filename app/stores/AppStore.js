@@ -1,16 +1,17 @@
 import alt from "../alt.js";
 import AppActions from "../actions/AppActions";
+import SidebarEntry from "../model/SidebarEntry.js"
 
 class AppStore {
+
 	constructor() {
 		this.bindActions(AppActions);
-
 		this.app = {
-      sidebar : []
-    };
+			sidebar: []
+		};
 	}
 
-	onAddSidebarEntry(sidebarEntry) {
+	onAddSidebarEntry(sidebarEntry : SidebarEntry) {
 		this.app.sidebar.push(sidebarEntry);
 	}
 }

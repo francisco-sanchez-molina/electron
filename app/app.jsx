@@ -11,12 +11,14 @@ import Component from "./components/component.jsx"
 import AppActions from "./actions/AppActions";
 import ServiceActions from "./actions/ServiceActions";
 
+import SidebarEntry from "./model/SidebarEntry.js"
 
 require('../index.scss');
 
-AppActions.addSidebarEntry( {name:'Home', link: '#/home'})
-AppActions.addSidebarEntry( {name:'Pane 1', link: '#/component/pane1'})
-AppActions.addSidebarEntry( {name:'Pane 2', link: '#/component/pane2'})
+AppActions.addSidebarEntry(new SidebarEntry('Home', '#/home'));
+AppActions.addSidebarEntry(new SidebarEntry('Pane 1', '#/component/pane1'));
+AppActions.addSidebarEntry(new SidebarEntry('Pane 2', '#/component/pane2'));
+
 
 class App extends React.Component {
   render() {
@@ -46,6 +48,7 @@ var routes = (
 )
 
 ReactDom.render( <Router history={hashHistory}>{routes}</Router>, document.getElementById("main"))
+
 
 function autoRefresh(counter) {
     counter = counter || 3;
